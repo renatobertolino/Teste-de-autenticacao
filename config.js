@@ -7,7 +7,7 @@ var config = {
         db:       'users'         
     },
     server: {
-        host: '127.0.0.1',
+        host: 'https://testeappaut.herokuapp.com/',
         port: '3000'
     }
 }
