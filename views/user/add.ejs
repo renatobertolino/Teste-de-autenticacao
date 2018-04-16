@@ -1,8 +1,11 @@
-<!--
-including header content which is common for all pages
--->
 <%- include ../layouts/header.ejs %>    
  
+<div>
+    <a href="/">Sair</a> | 
+    <a href="/users/add">Add New User</a> | 
+    <a href="/users">All Users List</a>
+</div>    
+
 <% if (messages.error) { %>
     <p style="color:red"><%- messages.error %></p>
 <% } %>
@@ -28,7 +31,4 @@ including header content which is common for all pages
     </table>
 </form>
  
-<!--
-including footer content which is common for all pages
--->
 <%- include ../layouts/footer.ejs %>

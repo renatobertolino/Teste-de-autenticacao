@@ -2,11 +2,6 @@
 <%- include layouts/header.ejs %>    
  
 
-
-<!--
-including footer content which is common for all pages
--->
-
 <div class="container">
 
 <div class="col-sm-6 col-sm-offset-3">
@@ -14,7 +9,7 @@ including footer content which is common for all pages
     <h1><span class="fa fa-sign-in"></span> Login</h1>
 
     <!-- LOGIN FORM -->
-    <form action="/users/list" method="post">
+    <form action="/login" method="post">
         <div class="form-group">
             <label>Nome</label>
             <input type="text" class="form-control" name="nome">

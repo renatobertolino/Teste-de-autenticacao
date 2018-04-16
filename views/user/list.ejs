@@ -1,8 +1,12 @@
-<!--
-including header content which is common for all pages
--->
+
 <%- include ../layouts/header.ejs %>
  
+<div>
+    <a href="/">Sair</a> | 
+    <a href="/users/add">Add New User</a> | 
+    <a href="/users">All Users List</a>
+</div> 
+
 <% if (messages.error) { %>
     <p style="color:red"><%- messages.error %></p>
 <% } %>
@@ -17,13 +21,7 @@ including header content which is common for all pages
         <th>Username</th>
         <th>Password</th>
     </tr>
-    
-    <!--
-        Using FOREACH LOOP for the users array
-        
-        myArray.forEach(function(el, index) {
-            // el - current element, i - index
-        });
+   
     -->
     <% if (data) { %>
     <% data.forEach(function(user){ %>
@@ -34,8 +32,5 @@ including header content which is common for all pages
     <% } %>
  
 </table>
- 
-<!--
-including footer content which is common for all pages
--->
+
 <%- include ../layouts/footer.ejs %>

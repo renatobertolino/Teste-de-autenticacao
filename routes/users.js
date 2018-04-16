@@ -13,7 +13,7 @@ app.get('/', function(req, res, next) {
                     data: ''
                 })
             } else {
-                // render to views/user/list.ejs template file
+                
                 res.render('user/list', {
                     title: 'User List', 
                     data: rows
@@ -33,8 +33,8 @@ app.get('/add', function(req, res, next){
 })
 
 app.post('/add', function(req, res, next){    
-    req.assert('nome', 'Nome requerido').notEmpty()           //Validate name
-    req.assert('senha', 'Senha requerida').notEmpty()             //Validate age
+    req.assert('nome', 'Nome requerido').notEmpty()
+    req.assert('senha', 'Senha requerida').notEmpty()
  
     var errors = req.validationErrors()
     
@@ -47,7 +47,7 @@ app.post('/add', function(req, res, next){
             conn.query('INSERT INTO users SET ?', user, function(err, result) {
                 //if(err) throw err
                 if (err) {
-                    req.flash('error', err)
+                    req.flash('error', 'erro')
                     
                     // render to views/user/add.ejs
                     res.render('user/add', {
@@ -56,9 +56,8 @@ app.post('/add', function(req, res, next){
                         senha: user.senha                    
                     })
                 } else {                
-                    req.flash('success', 'Data added successfully!')
+                    req.flash('success', 'Usuário inserido!')
                     
-                    // render to views/user/add.ejs
                     res.render('user/add', {
                         title: 'Add New User',
                         nome: '',
@@ -90,7 +89,7 @@ app.get('/login', function(req,res){
 
     req.getConnection(function(error, conn){
 
-        conn.query('SELECT * FROM users WHERE nome = ? and senha = ?',[nome],[senha], function (error, results, fields) {
+        conn.query('SELECT * FROM users WHERE nome = ?',[nome], function (error, results, fields) {
             if (error) {
               console.log("error ocurred",error);
               res.send({
@@ -100,7 +99,7 @@ app.get('/login', function(req,res){
             }else{
         
               if(results.length >0){
-                if([0].nome == nome){
+                if([0].senha == senha){
                   res.send({
                     "code":200,
                     "success":"login sucessfull"
@@ -109,14 +108,14 @@ app.get('/login', function(req,res){
                 else{
                   res.send({
                     "code":204,
-                    "success":"Email and password does not match"
+                    "success":"Usuário e senha não coincidem"
                       });
                 }
               }
               else{
                 res.send({
                   "code":204,
-                  "success":"Email does not exits"
+                  "success":"Email não existe"
                     });
               }
             }
