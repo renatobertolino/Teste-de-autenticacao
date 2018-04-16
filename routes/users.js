@@ -34,7 +34,7 @@ app.get('/add', function(req, res, next){
 
 app.post('/add', function(req, res, next){    
     req.assert('nome', 'Nome requerido').notEmpty()
-    req.assert('senha', 'Senha requerida').notEmpty()
+    req.assert('senha', 'Senha requerida').notEmpty() 
  
     var errors = req.validationErrors()
     
@@ -99,17 +99,18 @@ app.get('/login', function(req,res){
             }else{
         
               if(results.length >0){
-                if([0].senha == senha){
+                if([0].nome==nome){
                   res.send({
                     "code":200,
                     "success":"login sucessfull"
                       });
                 }
                 else{
-                  res.send({
-                    "code":204,
-                    "success":"Usuário e senha não coincidem"
-                      });
+                    res.redirect('/users')
+                  //res.send({
+                  //  "code":204,
+                   // "success":"Usuário e senha não coincidem"
+                    //  });
                 }
               }
               else{
